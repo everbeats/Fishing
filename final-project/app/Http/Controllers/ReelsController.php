@@ -15,8 +15,8 @@ class ReelsController extends Controller
      */
     public function index()
     {
-        $fishing_reels = Fishing_reel::all()->toArray();
-        return view('lib/index_reel',compact('fishing_reels'));
+        $reel = Fishing_reel::all()->toArray();
+        return view('work2/ad_reel',compact('reel'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ReelsController extends Controller
      */
     public function create()
     {
-        return view('/work.create_reel');
+        return view('work/create_reel');
     }
 
     /**
@@ -44,15 +44,15 @@ class ReelsController extends Controller
                                   'reel_brand' => 'required',
                                   'reel_price' => 'required'        
         ]);
-        $fishing_reel = new Fishing_reel(['reel_name' => $request->get('reel_name'),
-                                          'reel_size' => $request->get('reel_size'),
-                                          'reel_color' => $request->get('reel_color'),
-                                          'reel_type' => $request->get('reel_type'),
-                                          'reel_brand' => $request->get('reel_brand'),
-                                          'reel_price' => $request->get('reel_price')
+        $reel = new Fishing_reel(['reel_name' => $request->get('reel_name'),
+                                  'reel_size' => $request->get('reel_size'),
+                                  'reel_color' => $request->get('reel_color'),
+                                  'reel_type' => $request->get('reel_type'),
+                                  'reel_brand' => $request->get('reel_brand'),
+                                  'reel_price' => $request->get('reel_price')
         ]);
-        $fishing_reel->save();
-        return redirect()->route('reel.create')->with('success','บันทึกข้อมูลเรียบร้อย');
+        $reel->save();
+        return redirect()->route('reel.create');
     }
     
 
@@ -64,7 +64,7 @@ class ReelsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -75,7 +75,8 @@ class ReelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reel = Fishing_Reel::find($id);
+        return view('work/edit_reel',compact('reel','id'));
     }
 
     /**
@@ -87,7 +88,22 @@ class ReelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['reel_name' => 'required',
+                                  'reel_size' => 'required',
+                                  'reel_color' => 'required',
+                                  'reel_type' => 'required',
+                                  'reel_brand' => 'required',
+                                  'reel_price' => 'required'        
+        ]);
+        $reel = Fishing_Reel::find($id);
+        $reel->reel_name = $request->input('reel_name');
+        $reel->reel_size = $request->input('reel_size');
+        $reel->reel_color = $request->input('reel_color');
+        $reel->reel_type = $request->input('reel_type');
+        $reel->reel_brand = $request->input('reel_brand');
+        $reel->reel_price = $request->input('reel_price');
+        $reel->save();
+        return redirect()->route('reel.index');
     }
 
     /**
@@ -98,6 +114,8 @@ class ReelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reel = Fishing_reel::find($id);
+        $reel -> delete();
+        return redirect()->route('reel.index');
     }
 }

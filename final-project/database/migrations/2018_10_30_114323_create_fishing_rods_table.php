@@ -18,7 +18,6 @@ class CreateFishingRodsTable extends Migration
             $table->string('rod_name',100);
             $table->integer('rod_length');
             $table->string('rod_color',100);
-            $table->string('rod_action',100);
             $table->string('rod_power',100);
             $table->integer('rod_line');
             $table->integer('rod_lure');

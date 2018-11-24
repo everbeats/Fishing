@@ -1,4 +1,4 @@
-@extends('lib.master')
+@extends('work2.master')
 @section('title','เพิ่มสินค้า')
 @section('content')
 <div class="container">
@@ -29,8 +29,8 @@
                             <label>Type</label>
                             <select class="form-control" name="rod_type" type="text">
                                 <option value=""></option>
-                                <option value="spinning">Spinning Rod</option>
-                                <option value="casting">Casting Rod</option>
+                                <option value="Spinning Rod">Spinning Rod</option>
+                                <option value="Casting Rod">Casting Rod</option>
                             </select><br>
                         </div>
 
@@ -38,10 +38,10 @@
                             <label>Action</label>
                             <select class="form-control" name="rod_action" type="text">
                                 <option value=""></option>
-                                <option value="slow">Slow (S)</option>
-                                <option value="moderete">Moderete (M)</option>
-                                <option value="fast">Fast (F)</option>
-                                <option value="extra-fast">Extra-Fast (E)</option>
+                                <option value="Slow (S)">Slow (S)</option>
+                                <option value="Moderete (M)">Moderete (M)</option>
+                                <option value="Fast (F)">Fast (F)</option>
+                                <option value="Extra-Fast (E)">Extra-Fast (E)</option>
                             </select><br>
                         </div>
 
@@ -49,14 +49,14 @@
                             <label>Power</label>
                             <select class="form-control" name="rod_power" type="text">
                                 <option value=""></option>
-                                <option value="ultra-light">Ultra-Light (UL)</option>
-                                <option value="light">Light (L)</option>
+                                <option value="Ultra-Light (UL)">Ultra-Light (UL)</option>
+                                <option value="Light (L)">Light (L)</option>
                                 <option value="medium">Medium (M)</option>
-                                <option value="medium-light">Medium-Light (ML)</option>
-                                <option value="medium-heavy">Medium-Heavy (MH)</option>                                
-                                <option value="heavy">Heavy (H)</option>
-                                <option value="extra-heavy">Extra-Heavy (EH)</option>
-                                <option value="ultra-heavy">Ultra-Heavy (UH)</option>                                
+                                <option value="Medium-Light (ML)">Medium-Light (ML)</option>
+                                <option value="Medium-Heavy (MH)">Medium-Heavy (MH)</option>                                
+                                <option value="Heavy (H)">Heavy (H)</option>
+                                <option value="Extra-Heavy (EH)">Extra-Heavy (EH)</option>
+                                <option value="Ultra-Heavy (UH)">Ultra-Heavy (UH)</option>                                
                             </select><br>
                         </div>
 
@@ -88,21 +88,13 @@
 
                     </div>
                 </div>
-                <input onclick="myFunction()" class="btn btn-primary btn-block" type="submit" value="submit">  
+                <form class="enter_form">
+                    <input class="btn btn-primary btn-block" type="submit" value="submit">  
+                </form>
             </form>        
         </div>
     </div>
 </div>
-<script>
-function myFunction() {
-    var txt;
-    if (confirm("ยืนยัน การเพิ่มสินค้า!")) {
-        txt = "ตกลง!";
-    } else {
-        txt = "ยกเลิก";
-    }
-    document.getElementById("demo").innerHTML = txt;
-}
-</script>
+
 
 @stop

@@ -1,4 +1,4 @@
-@extends('lib.master')
+@extends('work2.master')
 @section('title','เพิ่มสินค้า')
 @section('content')
 <div class="container">
@@ -52,20 +52,10 @@
 
                     </div>
                 </div>
-                <input onclick="myFunction()" class="btn btn-primary btn-block" type="submit" value="submit">  
+                <input class="btn btn-primary btn-block" type="submit" value="submit">  
             </form>        
         </div>
     </div>
 </div>
-<script>
-function myFunction() {
-    var txt;
-    if (confirm("ยืนยัน การเพิ่มสินค้า!")) {
-        txt = "ตกลง!";
-    } else {
-        txt = "ยกเลิก";
-    }
-    document.getElementById("demo").innerHTML = txt;
-}
-</script>
+
 @stop

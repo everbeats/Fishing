@@ -14,8 +14,8 @@ class LinesController extends Controller
      */
     public function index()
     {
-        $fishing_lines = Fishing_line::all()->toArray();
-        return view('lib/index_line',compact('fishing_lines'));
+        $line = Fishing_line::all()->toArray();
+        return view('work2/ad_line',compact('line'));
     }
 
     /**
@@ -43,15 +43,15 @@ class LinesController extends Controller
                                   'line_brand' => 'required',
                                   'line_price' => 'required'        
         ]);
-        $fishing_line = new Fishing_line(['line_name' => $request->get('line_name'),
-                                          'line_size' => $request->get('line_size'),
-                                          'line_color' => $request->get('line_color'),
-                                          'line_type' => $request->get('line_type'),
-                                          'line_brand' => $request->get('line_brand'),
-                                          'line_price' => $request->get('line_price')
+        $line = new Fishing_line(['line_name' => $request->get('line_name'),
+                                  'line_size' => $request->get('line_size'),
+                                  'line_color' => $request->get('line_color'),
+                                  'line_type' => $request->get('line_type'),
+                                  'line_brand' => $request->get('line_brand'),
+                                  'line_price' => $request->get('line_price')
         ]);
-        $fishing_line->save();
-        return redirect()->route('line.create')->with('success','บันทึกข้อมูลเรียบร้อย');
+        $line->save();
+        return redirect()->route('line.create');
     }
 
     /**
@@ -73,7 +73,8 @@ class LinesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $line = Fishing_line::find($id);
+        return view('work/edit_line',compact('line','id'));
     }
 
     /**
@@ -85,7 +86,22 @@ class LinesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['line_name' => 'required',
+                                  'line_size' => 'required',
+                                  'line_color' => 'required',
+                                  'line_type' => 'required',
+                                  'line_brand' => 'required',
+                                  'line_price' => 'required'        
+        ]);
+        $line = Fishing_line::find($id);
+        $line->line_name = $request->input('line_name');
+        $line->line_size = $request->input('line_size');
+        $line->line_color = $request->input('line_color');
+        $line->line_type = $request->input('line_type');
+        $line->line_brand = $request->input('line_brand');
+        $line->line_price = $request->input('line_price');
+        $line->save();
+        return redirect()->route('line.index');
     }
 
     /**
@@ -95,7 +111,10 @@ class LinesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {  
+        $line = Fishing_line::where('line_id',$id);
+        $line -> delete();
+        return redirect()->route('line.index');
+        
     }
 }

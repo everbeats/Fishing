@@ -10,21 +10,25 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/lib_index_rod',function(){
-    return view('lib/index_rod');
+Route::get('/',function(){
+    return view('work2/ad_rod');
 });
-Route::get('/lib_index_reel',function(){
-    return view('lib/index_reel');
+Route::get('/ad_rod',function(){
+    return view('work2/ad_rod');
 });
-Route::get('/lib_index_line',function(){
-    return view('lib/index_line');
+Route::get('/ad_reel',function(){
+    return view('work2/ad_reel');
 });
-Route::get('/work_create_rod',function(){
-    return view('work/create_rod');
+Route::get('/ad_line',function(){
+    return view('work2/ad_line');
+});
+Route::get('/ad_hook',function(){
+    return view('/work2/ad_hook');
 });
 Route::resource('reel','ReelsController');
 Route::resource('line','LinesController');
 Route::resource('rod','RodsController');
+Route::resource('hook','HooksController');
 
 
 
